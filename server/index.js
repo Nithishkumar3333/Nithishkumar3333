@@ -2,6 +2,7 @@ const express = require("express");
 let formcollection = require("../server/Model/Form.model.js");
 const { mongoose } = require("mongoose");
 
+
 require("dotenv").config();
 var cors = require("cors");
 let app = express();
@@ -20,13 +21,14 @@ app.use("/", (req, res) => {
 });
 
 const port = process.env.PORT || 4000;
+const MongoDBUrl=`mongodb://127.0.0.1:27017/Student`
 
 let connect = async () => {
   try {
     app.listen(port, () => {
       console.log(`Server is Running on port ${port} `);
     });
-    await mongoose.connect("mongodb://127.0.0.1:27017/Student");
+    await mongoose.connect(MongoDBUrl);
 
     console.log("db connected");
   } catch (err) {}
